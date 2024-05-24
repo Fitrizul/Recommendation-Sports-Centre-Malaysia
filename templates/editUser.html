@@ -1,0 +1,201 @@
+<html>
+    <head></head>
+    <title>Edit Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <body>
+      <div class="designNav fixed-top" id="designHeader">
+        <nav>
+          <div class="logo">MyCourt</div>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li>
+              <a href="#">Find Sports Centre</a>
+              <ul>
+                <li><a href="/findSportCentreLocation">Location</a></li>
+                <li><a href="/findSportCentreCourt">Court</a></li>
+              </ul>
+            </li>
+            <li><a href="/bookingHistory">Booking History</a></li>
+            <li><a href="/userInfo">User Information</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+        </nav>
+      </div>
+    <script>
+      $('.icon').click(function()
+      {
+        $('span').toggleClass("cancel");
+      });
+    </script>
+        <br><br><br><br><br>
+        <div class="container">
+            <!-- Error message -->
+            {% for message in get_flashed_messages() %}
+                {% if message == "Your username to be updated is empty!" or  message == "Your email to be updated is empty!" or  message == "Your password to be updated is empty!" %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <h1>Edit Information</h1>
+            <br>
+            <div class="col-lg-4 mt-5">
+                <form action="" method="POST" >
+                    <input type="hidden" name="uid" value="">	
+                    <label for="userName" class="form-label">Username</label>
+                    <input type="text" name="username" value="{{ username }}" class="form-control"><br>
+                    <label for="eMail" class="form-label">Email</label>
+                    <input type="text" name="email" value="{{ email }}" class="form-control"><br>
+                    <label for="passWord" class="form-label">Password</label>
+                    <input type="text" name="password" value="{{ password }}" class="form-control"><br>
+                    <label for="locaTIon" class="form-label">Location</label>
+
+                    <select class="form-select" aria-label="Default select example" id="location" name="location" >
+                        <!-- Manipulating selected drop down location -->
+                        {% if location == "Kuala Lumpur" %}
+                        <option value="Kuala Lumpur" selected>Kuala Lumpur</option>
+                        {% else %}
+                        <option value="Kuala Lumpur">Kuala Lumpur</option>
+                        {% endif %}
+                        {% if location == "Selangor" %}
+                        <option value="Selangor" selected>Selangor</option>
+                        {% else %}
+                        <option value="Selangor">Selangor</option>
+                        {% endif %}
+                        {% if location == "Negeri Sembilan" %}
+                        <option value="Negeri Sembilan" selected>Negeri Sembilan</option>
+                        {% else %}
+                        <option value="Negeri Sembilan">Negeri Sembilan</option>
+                        {% endif %}
+                        {% if location == "Melaka" %}
+                        <option value="Melaka" selected>Melaka</option>
+                        {% else %}
+                        <option value="Melaka">Melaka</option>
+                        {% endif %}
+                        {% if location == "Johor" %}
+                        <option value="Johor" selected>Johor</option>
+                        {% else %}
+                        <option value="Johor">Johor</option>
+                        {% endif %}
+                        {% if location == "Pahang" %}
+                        <option value="Pahang" selected>Pahang</option>
+                        {% else %}
+                        <option value="Pahang">Pahang</option>
+                        {% endif %}
+                        {% if location == "Terengganu" %}
+                        <option value="Terengganu" selected>Terengganu</option>
+                        {% else %}
+                        <option value="Terengganu">Terengganu</option>
+                        {% endif %}
+                        {% if location == "Kelantan" %}
+                        <option value="Kelantan" selected>Kelantan</option>
+                        {% else %}
+                        <option value="Kelantan">Kelantan</option>
+                        {% endif %}
+                        {% if location == "Perak" %}
+                        <option value="Perak" selected>Perak</option>
+                        {% else %}
+                        <option value="Perak">Perak</option>
+                        {% endif %}
+                        {% if location == "Pulau Pinang" %}
+                        <option value="Pulau Pinang" selected>Pulau Pinang</option>
+                        {% else %}
+                        <option value="Pulau Pinang">Pulau Pinang</option>
+                        {% endif %}
+                        {% if location == "Kedah" %}
+                        <option value="Kedah" selected>Kedah</option>
+                        {% else %}
+                        <option value="Kedah">Kedah</option>
+                        {% endif %}
+                        {% if location == "Perlis" %}
+                        <option value="Perlis" selected>Perlis</option>
+                        {% else %}
+                        <option value="Perlis">Perlis</option>
+                        {% endif %}
+                        {% if location == "Sarawak" %}
+                        <option value="Sarawak" selected>Sarawak</option>
+                        {% else %}
+                        <option value="Sarawak">Sarawak</option>
+                        {% endif %}
+                        {% if location == "Sabah" %}
+                        <option value="Sabah" selected>Sabah</option>
+                        {% else %}
+                        <option value="Sabah">Sabah</option>
+                        {% endif %}
+                    </select>
+                    <br>
+                    <button type="submit" name="update" value="update" onClick="return confirm('Are you sure that you want to update this information?')" class="btn btn-primary mt-3 mb-5">Update</button>
+                </form>
+            </div>
+        </div>
+        <br><br>
+    <div id="designFooter">          
+        <div class="card sticky-bottom" style="border-radius: 0; height: 290px;">
+            <div class="row mb-3 ">                  
+                <div class="col-md-4 col-sm-11 col-xs-11">
+                    <div class="footer-text pull-left">
+                         <div class="d-flex">
+                             <h1 style="color: cyan;">MyCourt</h1>
+                         </div>
+                         <p class="card-text">Sports centre online booking system in Malaysia that helps to give recommendations based on user profile and has user-friendly court booking interface.</p>
+                         <div class="social mt-2 mb-3">
+                            <i class="fa fa-facebook-official fa-lg" ></i>
+                            <i class="fa fa-instagram fa-lg"></i>
+                            <i class="fa fa-twitter fa-lg"></i>
+                            <i class="fa fa-linkedin-square fa-lg"></i>
+
+                         </div>                        
+                     </div>
+                </div>                                
+                <div class="col-md-2 col-sm-1 col-xs-1 mb-2"></div>                   
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">                 
+                    <h5 class="heading">Features</h5>
+                    <ul >
+                        <li>Recommendations </li>
+                        <li>Court Booking</li>
+                        <li>Online Payment</li>
+                    </ul>                 
+                </div>        
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">         
+                    <h5 class="heading">Help Centre</h5>
+                    <ul class="card-text">
+                        <li>FAQ</li>
+                        <li>Terms of Use</li>
+                        <li>Privacy Policy</li>
+                    </ul>             
+                </div>              
+                 <div class="col-md-2 col-sm-4 col-xs-4 mt-4">
+                    <h5 class="heading">About Us</h5>
+                    <ul class="card-text">
+                        <li>About Us</li>
+                        <li>Blog</li>
+                        <li>Contact</li>
+                    </ul>
+                 </div>
+            </div>       
+            <div class="divider mb-4" >   
+            </div>    
+            <div class="row" style="font-size:10px;">            
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-left">                     
+                    <p><i class="fa fa-copyright"></i> 2023 MyCourt. All Rights Reserved.</p>                       
+                </div>                  
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-right mr-4 d-flex policy">                       
+                   <div></div>
+                   <div></div>
+                   <div></div>                     
+                </div>         
+            </div>   
+         </div>
+        </div>            
+    </div>
+    </body>
+</html>

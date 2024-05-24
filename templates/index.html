@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style2.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+</head>
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+
+    h1,h2,h3,h4,h5,h6 
+    {
+        font-weight: 645;
+        letter-spacing: 1px;
+        color: #11245A;
+    }
+
+    .title-sm 
+    {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    #test a 
+    {
+        font-weight: 700;
+        transition: all 0.4s ease;
+        text-decoration: none;
+    }
+
+    img 
+    {
+        width: 100%;
+    }
+
+    section 
+    {
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+
+    #home 
+    {
+        background: url(../static/images/badmintonIndex.jpg);
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+    }
+
+    #home h1 
+    {
+        font-weight: 700;
+    }
+
+    #home p 
+    {
+        max-width: 550px;
+        margin: 18px auto;
+    }
+
+    .btn 
+    {
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 12px 28px;
+        border-radius: 0;
+    }
+
+    .btn-brand 
+    {
+        background-color: #0000FF;
+        color: #fff;
+    }
+
+    .btn-brand:hover 
+    {
+        background-color: #0000EB;
+        color: #fff;
+    }
+
+    .section-intro 
+    {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-intro .hline 
+    {
+        width: 120px;
+        height: 2px;
+        background-color: rgba(0, 0, 0, 0.1);
+        margin: 16px auto 0 auto;
+    }
+
+    .icon-box 
+    {
+        width: 60px;
+        height: 60px;
+        background-color: #0000FF;
+        color: #fff;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        flex: none;
+    }
+
+    .portfolio-item 
+    {
+        overflow: hidden;
+        position: relative;
+        height: 273px;
+    }
+
+    .portfolio-item img,
+    .portfolio-item .portfolio-overlay 
+    {
+        transition: all 0.4s ease;
+    }
+
+    .portfolio-overlay 
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(17, 36, 90, 0.9);
+        display: flex;
+        align-items: flex-end;
+        padding: 30px;
+        opacity: 0;
+    }
+
+    .portfolio-overlay h3,
+    .portfolio-overlay h6 
+    {
+        color: #fff;
+    }
+
+    .portfolio-item:hover .portfolio-overlay 
+    {
+        opacity: 1;
+    }
+
+    .portfolio-item:hover img 
+    {
+        transform: scale(1.1);
+    }
+
+
+</style>
+<body>
+  <div class="designNav fixed-top" id="designHeader">
+    <nav>
+      <div class="logo">MyCourt</div>
+      <ul>       
+        <li><a href="/">Home</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Log In</a></li>
+      </ul>
+    </nav>
+  </div>
+<script>
+  $('.icon').click(function()
+  {
+    $('span').toggleClass("cancel");
+  });
+</script>
+    <br>
+    <!-- Hero section -->
+    <section id="home">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-10">
+                 <h1 class="display-4" id="testing" style="color: black;">SPORTS CENTRE</h1>
+                 <h1 class="display-4" id="testing" style="color: black;">BOOKING WEBSITE</h1>
+                 <br><br>
+                 <a href="/login" class="btn btn-brand" id="test" style="font-size: medium;">Book Now</a>
+              </div>
+           </div>
+        </div>
+     </section>
+     <br><br>
+     <!-- Features section -->
+     <section id="services">
+        <div class="container">
+           <div class="row">
+              <div class="col-12 section-intro">
+                 <h1 style="text-transform: uppercase;">Our Features</h1>
+                 <div class="hline"></div>
+              </div>
+           </div>
+           <div class="row">
+              <div class="col-lg-4 col-sm-6 p-4">
+                 <div class="icon-box">
+                    <i class='bx bxs-bookmark'></i>
+                 </div>
+                 <h4 class="title-sm mt-4" style="text-transform: uppercase;">Court Booking</h4>
+                 <p>Allows user to make an online court booking of the selected sports centre.</p>
+              </div>
+              <div class="col-lg-4 col-sm-6 p-4">
+                 <div class="icon-box">
+                    <i class='bx bxs-user-account'></i>
+                 </div>
+                 <h4 class="title-sm mt-4" style="text-transform: uppercase;">Sports Centre Recommendations</h4>
+                 <p>Helps to provide sports centre recommendations that currently operating in Malaysia.</p>
+              </div>
+              <div class="col-lg-4 col-sm-6 p-4">
+                 <div class="icon-box">
+                    <i class='bx bxs-credit-card'></i>
+                 </div>
+                 <h4 class="title-sm mt-4" style="text-transform: uppercase;">Online Payment</h4>
+                 <p>Easier online payment for booking with user's debit card or online banking.</p>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Facilities section -->
+     <section>
+        <div class="container">
+           <div class="row">
+              <div class="col-12 section-intro">
+                 <h1 id="testing" style="text-transform: uppercase;">Our Facilities</h1>
+                 <div class="hline"></div>
+              </div>
+           </div>
+        </div>
+        <br><br>
+        <span id="portfolio" class="row g-0 py-0">
+            <div class="col-lg-4 col-sm-6">
+               <div class="portfolio-item">
+                     <img src="../static/images/badminton3.jpg" alt="">
+                     <div class="portfolio-overlay">
+                        <div>
+                           <h3 id="testing" style="text-transform: uppercase;">Badminton Court</h3>
+                        </div>
+                     </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+               <div class="portfolio-item">
+                     <img src="../static/images/futsal4.jpg" alt="">
+                     <div class="portfolio-overlay">
+                        <div>
+                           <h3 id="testing" style="text-transform: uppercase;">Futsal Court</h3>
+                        </div>
+                     </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+               <div class="portfolio-item">
+                     <img src="../static/images/squash1.jpg" alt="">
+                     <div class="portfolio-overlay">
+                        <div>
+                           <h3 id="testing" style="text-transform: uppercase;">Squash Court</h3>
+                        </div>
+                     </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+               <div class="portfolio-item">
+                     <img src="../static/images/tennis4.png" alt="">
+                     <div class="portfolio-overlay">
+                        <div>
+                           <h3 id="testing" style="text-transform: uppercase;">Tennis Court</h3>
+                        </div>
+                     </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+               <div class="portfolio-item">
+                     <img src="../static/images/volleyball4.jpg" alt="">
+                     <div class="portfolio-overlay">
+                        <div>
+                           <h3 id="testing" style="text-transform: uppercase;">Volleyball Court</h3>
+                        </div>
+                     </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+               <div class="portfolio-item">
+                     <img src="../static/images/sportTools.png" alt="">
+                     <div class="portfolio-overlay">
+                        <div>
+                           <h3 id="testing" style="text-transform: uppercase;">Sports Tools</h3>
+                        </div>
+                     </div>
+               </div>
+            </div>
+         </span>
+    </section>
+    <br><br><br><br>
+    <div id="designFooter">          
+        <div class="card sticky-bottom" style="border-radius: 0; height: 290px;">
+            <div class="row mb-3 ">                  
+                <div class="col-md-4 col-sm-11 col-xs-11">
+                    <div class="footer-text pull-left">
+                         <div class="d-flex">
+                             <h1 style="color: cyan;">MyCourt</h1>
+                         </div>
+                         <p class="card-text">Sports centre online booking system in Malaysia that helps to give recommendations based on user profile and has user-friendly court booking interface.</p>
+                         <div class="social mt-2 mb-3">
+                            <i class="fa fa-facebook-official fa-lg" ></i>
+                            <i class="fa fa-instagram fa-lg"></i>
+                            <i class="fa fa-twitter fa-lg"></i>
+                            <i class="fa fa-linkedin-square fa-lg"></i>
+
+                         </div>                        
+                     </div>
+                </div>                                
+                <div class="col-md-2 col-sm-1 col-xs-1 mb-2"></div>                   
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">                 
+                    <h5 class="heading">Features</h5>
+                    <ul >
+                        <li>Recommendations </li>
+                        <li>Court Booking</li>
+                        <li>Online Payment</li>
+                    </ul>                 
+                </div>        
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">         
+                    <h5 class="heading">Help Centre</h5>
+                    <ul class="card-text">
+                        <li>FAQ</li>
+                        <li>Terms of Use</li>
+                        <li>Privacy Policy</li>
+                    </ul>             
+                </div>              
+                 <div class="col-md-2 col-sm-4 col-xs-4 mt-4">
+                    <h5 class="heading">About Us</h5>
+                    <ul class="card-text">
+                        <li>About Us</li>
+                        <li>Blog</li>
+                        <li>Contact</li>
+                    </ul>
+                 </div>
+            </div>       
+            <div class="divider mb-4" >   
+            </div>    
+            <div class="row" style="font-size:10px;">            
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-left">                     
+                    <p><i class="fa fa-copyright"></i> 2023 MyCourt. All Rights Reserved.</p>                       
+                </div>                  
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-right mr-4 d-flex policy">                       
+                   <div></div>
+                   <div></div>
+                   <div></div>                     
+                </div>         
+            </div>   
+         </div>
+        </div>            
+    </div>
+</body>
+</html>

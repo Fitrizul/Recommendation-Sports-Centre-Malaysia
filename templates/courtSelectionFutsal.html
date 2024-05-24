@@ -1,0 +1,441 @@
+<html>
+    <head></head>
+    <title>Court Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+
+.borderexample 
+    {
+        border-width:3px;
+        border-style:solid;
+        border-color:#287EC7;
+    }
+    .order-part
+    {
+      height: 330px;
+      padding: 20px;
+      border: 1px solid silver;
+      border-radius: 5px;
+    }
+    .cart-total
+    {
+      margin-left: 20px;
+      padding: 20px;
+      border: 1px solid silver;
+      border-radius: 5px;
+    }
+    .btn1{
+			border: none;
+			outline:  none;
+			height: 40px;
+			width: 100%;
+			background-color: black;
+			color: white;
+			border-radius: 4px;
+			font-weight: bold;
+		}
+		.btn1:hover{
+			background: white;
+			border: 1px solid blue;
+			color: black;
+		}
+    .cart-total p
+    {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    </style>
+    <script type="text/javascript">
+        var price = 80;
+        //Calculate total fees of booking
+        function calculateTotal() 
+        {
+          var duration = 0
+          var toolsFee = 0
+
+          var futsalBallFee = 15
+          var towelFee = 3
+          var quantityInput = 0
+
+          var sportTools = document.getElementById("sportsTools").value;
+        
+          var durationBook = document.getElementById("bookDuration").value;
+          var displayPrice = document.getElementById("displayPrice");
+
+          if(durationBook == "Select")
+          {
+            if(sportTools == "FutsalBall")
+            {
+              quantityInput = document.getElementById("quantityInput").value;
+              toolsFee = toolsFee + (quantityInput * futsalBallFee)
+            }
+            else if(sportTools == "Towel")
+            {
+              quantityInput = document.getElementById("quantityInput").value;
+              toolsFee = toolsFee + (quantityInput * towelFee)
+            }
+
+            var totalPriceDuration = duration * price
+            var total = totalPriceDuration + toolsFee;
+            displayPrice.innerHTML = "RM "+total;
+            document.getElementById("totalFee").value = total;
+          }
+          else if (durationBook != "Select")
+          {
+            if(sportTools == "FutsalBall")
+            {
+              quantityInput = document.getElementById("quantityInput").value;
+              toolsFee = toolsFee + (quantityInput * futsalBallFee)
+            }
+            else if(sportTools == "Towel")
+            {
+              quantityInput = document.getElementById("quantityInput").value;
+              toolsFee = toolsFee + (quantityInput * towelFee)
+            }
+            var totalPriceDuration = durationBook * price
+            var total = totalPriceDuration + toolsFee;
+            displayPrice.innerHTML = "RM "+total; 
+            document.getElementById("totalFee").value = total;
+          }
+        }
+        //Manipulating quantity drop down display
+        function showQuantity()
+        {
+            var sportsTools = document.getElementById("sportsTools");
+            var quantityInput = document.getElementById("quantityInput");
+  
+            if (sportsTools.value !== "None") 
+            {
+              quantityInput.style.display = "block";
+            } 
+            else 
+            {
+              quantityInput.style.display = "none";
+            }
+        }
+        //Manipulating date display
+        function displayD() 
+        {
+          var bookDate = document.getElementById("setTodaysDate").value;
+          var outputDate = document.getElementById("displayDate");
+          
+          if (bookDate.value == "") 
+          {
+            outputDate.style.display = "none";
+          }
+          else
+          {
+            outputDate.innerHTML = bookDate;
+            outputDate.style.display = "block";            
+          }
+        }
+        //Manipulating time display
+        function displayT() 
+        {
+          var bookTime = document.getElementById("bookTime").value;
+          var bookCourt = document.getElementById("courtSelect").value;
+          var displayTime = document.getElementById("displayTime");
+          var displayCourt = document.getElementById("displayCourt");
+          var displayText = document.getElementById("displayText");
+          
+          if (bookCourt.value == "Select") 
+          {
+            displayTime.style.display = "none";
+            displayCourt.style.display = "none";
+            displayText.style.display = "none";
+          }
+          else if (bookTime.value == "Select") 
+          {
+            displayTime.style.display = "none";
+            displayCourt.style.display = "none";
+            displayText.style.display = "none";
+          }
+          else
+          {
+            displayTime.innerHTML = bookTime;
+            displayCourt.innerHTML = bookCourt;
+            displayTime.style.display = "inline";    
+            displayCourt.style.display = "inline";  
+            displayText.style.display = "inline";     
+          }
+          
+        }
+        //Manipulating add on value
+        function displayAdd() 
+        {
+          var sportTools = document.getElementById("sportsTools").value;
+          var sportTool = document.getElementById("sportsTools");
+          var addOn = document.getElementById("displayAddOn");
+          var quantityInput2 = document.getElementById("quantityInput").value;
+          var displayQuantity = document.getElementById("displayQuantity");
+          var displayText2 = document.getElementById("displayText2");
+
+          if(sportTool.value !== "None")
+          {
+            if(sportTools == "FutsalBall")
+            {
+              addOn.innerHTML = "Futsal Ball";
+              displayQuantity.innerHTML = quantityInput2;
+              addOn.style.display = "inline"; 
+              displayText2.style.display = "inline"; 
+              displayQuantity.style.display = "inline"; 
+            }
+            else
+            {
+              addOn.innerHTML = sportTools;
+              displayQuantity.innerHTML = quantityInput2;
+              addOn.style.display = "inline"; 
+              displayText2.style.display = "inline"; 
+              displayQuantity.style.display = "inline";
+            }
+          }
+          else
+          {
+            addOn.innerHTML = sportTools;
+            displayQuantity.innerHTML = quantityInput2;
+            addOn.style.display = "none";
+            displayText2.style.display = "none";
+            displayQuantity.style.display = "none";
+          }
+
+        }
+      
+    </script>
+    <body>
+      <div class="designNav fixed-top" id="designHeader">
+        <nav>
+          <div class="logo">MyCourt</div>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li>
+              <a href="#">Find Sports Centre</a>
+              <ul>
+                <li><a href="/findSportCentreLocation">Location</a></li>
+                <li><a href="/findSportCentreCourt">Court</a></li>
+              </ul>
+            </li>
+            <li><a href="/bookingHistory">Booking History</a></li>
+            <li><a href="/userInfo">User Information</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+        </nav>
+      </div>
+    <script>
+      $('.icon').click(function()
+      {
+        $('span').toggleClass("cancel");
+      });
+    </script>
+        <br><br><br><br><br>
+        <div class="container">
+            <!-- Error message -->
+            {% for message in get_flashed_messages() %}
+              {%  if message == "Please fill out all of the form!" 
+                  or message == "Please select the date for booking!" 
+                  or message == "The time of the booking has already passed. Please select another time!"
+                  or message == "The selected booking slot for this sports centre has already been reserved. Please try again!" 
+                  or message == "The selected booking time slot for this sports centre has already been reserved. Please try again!" 
+                  or message == "Please select the time for booking!" or message == "Please select the duration for booking!" 
+                  or message == "The quantity of sports tools is empty. Please try again!"
+                  or message == "The booking duration has been exceed for next reservation slot. Please try again!"
+                  or message == "The duration of booking is exceed the time of business hour at 2 AM. Please try again!" %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {% endif %}
+            {% endfor %}
+            <h1>Futsal Court Selection Form</h1>
+            <br>
+            <div class="mt-5">
+                <form action="/courtSelectionProcess" method="POST">
+                <div class="col-md-12">
+                  <div class="row">
+                      <div class="order-part col-md-8">
+                        <div class="row" style="margin-top: 10px;">
+                          <div class="col-md-6">
+                            <label for="bookdate" class="form-label">Date</label><br>
+                            <input id="setTodaysDate" name="setTodaysDate" type="date" class="form-control" style="width: 82%" onchange="displayD()">
+                            <script>
+                              var today = new Date().toISOString().split('T')[0];
+                              document.getElementsByName("setTodaysDate")[0].setAttribute('min', today);
+                            </script>
+                            <br>
+                          </div>
+                          <div class="col-md-6"></div>
+                          <div class="col-md-6">
+                            <label for="courtselect" class="form-label">Select your preferred court</label>
+                            <select class="form-select" aria-label="Default select example" id="courtSelect" name="courtSelect" style="width: 82%" onchange="displayT()">
+                              <option value="1">Court 1</option>
+                              <option value="2">Court 2</option>
+                              <option value="3">Court 3</option>
+                              <option value="2">Court 4</option>
+                              <option value="3">Court 5</option>
+                            </select>
+                            <br>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="booktime" class="form-label">Time</label>
+                            <select class="form-select" aria-label="Default select example" id="bookTime" name="bookTime" style="width: 82%" onchange="displayT()">
+                                <option value="Select" selected hidden>Select</option>
+                                <option value="8:00">08.00 AM</option>
+                                <option value="9:00">09.00 AM</option>
+                                <option value="10:00">10.00 AM</option>
+                                <option value="11:00">11.00 AM</option>
+                                <option value="12:00">12.00 PM</option>
+                                <option value="13:00">01.00 PM</option>
+                                <option value="14:00">02.00 PM</option>
+                                <option value="15:00">03.00 PM</option>
+                                <option value="16:00">04.00 PM</option>
+                                <option value="17:00">05.00 PM</option>
+                                <option value="18:00">06.00 PM</option>
+                                <option value="19:00">07.00 PM</option>
+                                <option value="20:00">08.00 PM</option>
+                                <option value="21:00">09.00 PM</option>
+                                <option value="22:00">10.00 PM</option>
+                                <option value="23:00">11.00 PM</option>
+                                <option value="00:00">12.00 AM</option>
+                            </select>
+                            <br>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="bookDura" class="form-label">Booking Duration (Hour)</label>
+                              <select class="form-select" aria-label="Default select example" id="bookDuration" name="bookDuration" style="width: 82%" onchange="calculateTotal()">
+                                  <option value="Select" selected hidden>Select</option>
+                                  <option value="1">1 hour</option>
+                                  <option value="2">2 hours</option>
+                                  <option value="3">3 hours</option>
+                                  <option value="4">4 hours</option>
+                                  <option value="5">5 hours</option>
+                              </select>
+                            <br>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="tools" class="form-label">Add-on Sports Tool</label>
+                              <div style="display: flex;">
+                                <select class="form-select" aria-label="Default select example" id="sportsTools" name="sportsTools" style="width: 40%;" onchange="showQuantity();calculateTotal();displayAdd()" >
+                                    <option value="None" selected>None</option>
+                                    <option value="FutsalBall" >Futsal Ball</option>
+                                    <option value="Towel">Towel</option>
+                                </select>
+                                <select class="form-select" aria-label="Default select example" id="quantityInput" name="quantityInput" style="display: none;width: 40%;margin-left: 10px;" onchange="calculateTotal();displayAdd()">
+                                  <option value="0" selected hidden>Quantity</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                </select>
+                              </div>
+                            <br>
+                          </div>
+                        </div>       
+                      </div>  
+                      <div class="col-md-4 ">
+                        <div class="cart-total">
+                          <h5 class="text-center">My Cart</h5>
+                          <hr style="opacity: 0.1;">
+                          <div class="row">
+                            <div class="col-md-6 ">                           
+                              <p>
+                                <span style="color: #0000FF;">{{ session['courtSport'] }}</span>
+                              </p>
+                              <span><h6>{{ session['sportsCentre'] }}</h6></span>    
+                              <span style="font-size:13px;">{{ session['location'] }}</span>
+                            </div>
+                            <div class="col-md-6 ">
+                              <img src="{{ url_for('static', filename='images/futsal4.jpg')}}" width="160" height="100">
+                            </div>
+                          </div>
+                          <hr style="opacity: 0.1;">
+                          <span><h6>Booking Details</h6></span>
+                          <span id="displayDate" style="display:none;font-size:13px;"></span>
+                          <span id="displayTime" style="display:none;font-size:13px;"></span>&nbsp;<span id="displayText" style="display:none;font-size:13px;">- Court&nbsp;</span><span id="displayCourt" style="display:none;font-size:13px;"></span><br>
+                          <span id="displayAddOn" style="display:none;font-size:13px;"></span>&nbsp;<span id="displayText2" style="display:none;font-size:13px;">-</span>&nbsp;<span id="displayQuantity" style="display:none;font-size:13px;"></span><br>
+                          <hr style="opacity: 0.1;">
+                          <p>
+                            <span><b>Total Booking Fee</b></span>
+                            <b><span id="displayPrice"></span></b>
+                            <input type="hidden" id="totalFee" name="totalFee">
+                          </p>
+                          <button type="submit" class="btn1 align-middle" style="position: relative;bottom: -10;margin-bottom: 15px;">Proceed to Payment</button>              
+                        </div>   
+                      </div>
+                  </div>
+                  <br>
+                </div>
+              </form>         
+            </div>
+        </div>
+        <br><br><br><br>
+    <div id="designFooter">          
+        <div class="card sticky-bottom" style="border-radius: 0; height: 290px;">
+            <div class="row mb-3 ">                  
+                <div class="col-md-4 col-sm-11 col-xs-11">
+                    <div class="footer-text pull-left">
+                         <div class="d-flex">
+                             <h1 style="color: cyan;">MyCourt</h1>
+                         </div>
+                         <p class="card-text">Sports centre online booking system in Malaysia that helps to give recommendations based on user profile and has user-friendly court booking interface.</p>
+                         <div class="social mt-2 mb-3">
+                            <i class="fa fa-facebook-official fa-lg" ></i>
+                            <i class="fa fa-instagram fa-lg"></i>
+                            <i class="fa fa-twitter fa-lg"></i>
+                            <i class="fa fa-linkedin-square fa-lg"></i>
+
+                         </div>                        
+                     </div>
+                </div>                                
+                <div class="col-md-2 col-sm-1 col-xs-1 mb-2"></div>                   
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">                 
+                    <h5 class="heading">Features</h5>
+                    <ul >
+                        <li>Recommendations </li>
+                        <li>Court Booking</li>
+                        <li>Online Payment</li>
+                    </ul>                 
+                </div>        
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">         
+                    <h5 class="heading">Help Centre</h5>
+                    <ul class="card-text">
+                        <li>FAQ</li>
+                        <li>Terms of Use</li>
+                        <li>Privacy Policy</li>
+                    </ul>             
+                </div>              
+                 <div class="col-md-2 col-sm-4 col-xs-4 mt-4">
+                    <h5 class="heading">About Us</h5>
+                    <ul class="card-text">
+                        <li>About Us</li>
+                        <li>Blog</li>
+                        <li>Contact</li>
+                    </ul>
+                 </div>
+            </div>       
+            <div class="divider mb-4" >   
+            </div>    
+            <div class="row" style="font-size:10px;">            
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-left">                     
+                    <p><i class="fa fa-copyright"></i> 2023 MyCourt. All Rights Reserved.</p>                       
+                </div>                  
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-right mr-4 d-flex policy">                       
+                   <div></div>
+                   <div></div>
+                   <div></div>                     
+                </div>         
+            </div>   
+         </div>
+        </div>            
+    </div>
+    </body>
+</html>

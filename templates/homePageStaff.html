@@ -1,0 +1,230 @@
+<html>
+    <head></head>
+    <title>Court Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://kit.fontawesome.com/ef66ce4b65.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+    
+    </style>
+    <body>
+      <div class="designNav fixed-top" id="designHeader">
+        <nav>
+          <div class="logo">MyCourt</div>
+          <ul>
+            <li><a href="/homeStaff">Home</a></li>
+            <li>
+            <li><a href="/logoutStaff">Log Out</a></li>
+          </ul>
+        </nav>
+      </div>
+    <script>
+        $('.icon').click(function()
+        {
+          $('span').toggleClass("cancel");
+        });
+    </script>
+        <br><br><br><br><br>
+        <div class="container">
+            <!-- Error message -->
+            {% for message in get_flashed_messages() %}
+              {% if message == "Your given rating value is 0. Please try again!"  %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>        
+              {% endif %}
+            {% endfor %}
+            <h1>Transaction History</h1>
+            <br><br>
+            <table class="table table-striped mb-5">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">Court</th>
+                  <th scope="col">Court Number</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Duration</th>
+                  <th scope="col" style="width: 130px;">Booking Fee</th>
+                  <th scope="col" class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% set count = namespace(value=1) %}
+                {% for row in viewBooking %}
+                <tr>
+                    <th scope="row">{{ count.value }}</th>
+                    <td>{{ row.12 }}</td>
+                    <td>{{ row.13 }}</td>
+                    <td>{{ row.4 }}</td>
+                    {% if row.5 == "1" %}
+                    <td> &emsp;&emsp;&ensp;One</td>
+                    {% elif row.5 == "2" %}
+                    <td>&emsp;&emsp;&ensp;Two</td>
+                    {% elif row.5 == "3" %}
+                    <td>&emsp;&emsp;&nbsp;Three</td>
+                    {% elif row.5 == "4" %}
+                    <td>&emsp;&emsp;&ensp;Four</td>
+                    {% elif row.5 == "5" %}
+                    <td>&emsp;&emsp;&ensp;Five</td>
+                    {% endif %}
+                    <div class="dateBooking" data-date="{{ row.6 }}">
+                      <td >{{ row.6 }}</td>
+                    </div>
+                    <!-- Manipulating time display -->
+                    {% if row.7|string() == '8:00:00' %}
+                    <td>8.00 AM </td>
+                    {% elif row.7|string() == '9:00:00' %}
+                    <td>9.00 AM </td>
+                    {% elif row.7|string() == '10:00:00' %}
+                    <td>10.00 AM </td>
+                    {% elif row.7|string() == '11:00:00' %}
+                    <td>11.00 AM </td>
+                    {% elif row.7|string() == '12:00:00' %}
+                    <td>12.00 PM </td>
+                    {% elif row.7|string() == '13:00:00' %}
+                    <td>1.00 PM </td>
+                    {% elif row.7|string() == '14:00:00' %}
+                    <td>2.00 PM </td>
+                    {% elif row.7|string() == '15:00:00' %}
+                    <td>3.00 PM </td>
+                    {% elif row.7|string() == '16:00:00' %}
+                    <td>4.00 PM </td>
+                    {% elif row.7|string() == '17:00:00' %}
+                    <td>5.00 PM </td>
+                    {% elif row.7|string() == '18:00:00' %}
+                    <td>6.00 PM </td>
+                    {% elif row.7|string() == '19:00:00' %}
+                    <td>7.00 PM </td>
+                    {% elif row.7|string() == '20:00:00' %}
+                    <td>8.00 PM </td>
+                    {% elif row.7|string() == '21:00:00' %}
+                    <td>9.00 PM </td>
+                    {% elif row.7|string() == '22:00:00' %}
+                    <td>10.00 PM </td>
+                    {% elif row.7|string() == '23:00:00' %}
+                    <td>11.00 PM </td>
+                    {% else%}
+                    <td>12.00 AM </td>
+                    {% endif %}
+                    {% if row.9 == 1 %}
+                      <td>{{ row.9 }} hour</td>             
+                    {% else %}
+                      <td>{{ row.9 }} hours</td>
+                    {% endif %}
+                    <td>RM {{ row.10 }}0</td>
+                    {% set count.value = count.value + 1 %}  
+                    <td>
+                        <form action="/printTransaction" method="post">
+                            <input type="hidden" id="orderId" name="orderId" value="{{ row.0 }}">
+                            <button type="submit" id="printTransaction" data-toggle='tooltip' class="btn btn-success fa-solid fa-print" title="Print Transaction" data-inline="true" style="margin-left: 35px;"></button></td>              
+                          </form>
+                    </td>        
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <br>
+        </div>
+        
+        <!-- Manipulating space responsiveness based on the number of booking at the sports centre -->
+        {% set countSpace = namespace(value=0) %}
+        {% for row in viewBooking %}
+            {% set countSpace.value = countSpace.value + 1 %}
+        {% endfor %}
+        {% if countSpace.value == 0 %}
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        {% elif countSpace.value == 1 %}
+        <br><br><br><br><br><br><br><br><br><br><br>
+        {% elif countSpace.value == 2 %}
+        <br><br><br><br><br><br><br><br><br><br>
+        {% elif countSpace.value == 3 %}
+        <br><br><br><br><br><br><br><br><br>
+        {% elif countSpace.value == 4 %}
+        <br><br><br><br><br><br><br><br>
+        {% elif countSpace.value == 5 %}
+        <br><br><br><br><br><br><br>
+        {% elif countSpace.value == 6 %}
+        <br><br><br><br><br><br>
+        {% elif countSpace.value == 7 %}
+        <br><br><br><br><br>
+        {% elif countSpace.value == 8 %}
+        <br><br><br><br>
+        {% else %}
+        <br><br><br>
+        {% endif %}
+
+    <div id="designFooter">          
+        <div class="card sticky-bottom" style="border-radius: 0; height: 290px;">
+            <div class="row mb-3 ">                  
+                <div class="col-md-4 col-sm-11 col-xs-11">
+                    <div class="footer-text pull-left">
+                         <div class="d-flex">
+                             <h1 style="color: cyan">MyCourt</h1>
+                         </div>
+                         <p class="card-text">Sports centre online booking system in Malaysia that helps to give recommendations based on user profile and has user-friendly court booking interface.</p>
+                         <div class="social mt-2 mb-3">
+                            <i class="fa fa-facebook-official fa-lg" ></i>
+                            <i class="fa fa-instagram fa-lg"></i>
+                            <i class="fa fa-twitter fa-lg"></i>
+                            <i class="fa fa-linkedin-square fa-lg"></i>
+
+                         </div>                        
+                     </div>
+                </div>                                
+                <div class="col-md-2 col-sm-1 col-xs-1 mb-2"></div>                   
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">                 
+                    <h5 class="heading">Features</h5>
+                    <ul >
+                        <li>Recommendations </li>
+                        <li>Court Booking</li>
+                        <li>Online Payment</li>
+                    </ul>                 
+                </div>        
+                <div class="col-md-2 col-sm-4 col-xs-4 mt-4">         
+                    <h5 class="heading">Help Centre</h5>
+                    <ul class="card-text">
+                        <li>FAQ</li>
+                        <li>Terms of Use</li>
+                        <li>Privacy Policy</li>
+                    </ul>             
+                </div>              
+                 <div class="col-md-2 col-sm-4 col-xs-4 mt-4">
+                    <h5 class="heading">About Us</h5>
+                    <ul class="card-text">
+                        <li>About Us</li>
+                        <li>Blog</li>
+                        <li>Contact</li>
+                    </ul>
+                 </div>
+            </div>       
+            <div class="divider mb-4" >   
+            </div>    
+            <div class="row" style="font-size:10px;">            
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-left">                     
+                    <p><i class="fa fa-copyright"></i> 2023 MyCourt. All Rights Reserved.</p>                       
+                </div>                  
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">                
+                <div class="pull-right mr-4 d-flex policy">                       
+                   <div></div>
+                   <div></div>
+                   <div></div>                     
+                </div>         
+            </div>   
+         </div>
+        </div>            
+    </div>
+    </body>
+</html>

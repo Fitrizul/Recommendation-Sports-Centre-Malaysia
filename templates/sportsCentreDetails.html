@@ -1,0 +1,213 @@
+<html>
+    <head></head>
+    <title>Court Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <script src="https://kit.fontawesome.com/ef66ce4b65.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style type="text/css">
+
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+
+    .rating
+    {
+        border: none;
+        float: left;
+    }
+
+    .rating > input
+    {
+	    display: none;
+    }
+
+    .rating > label:before
+    {
+        content: '\f005';
+        font-family: FontAwesome;
+        margin: 5px;
+        font-size: 1.5rem;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .rating > .half:before
+    {
+        content: '\f089';
+        position: absolute;
+        cursor: pointer;
+    }
+
+    .rating > label
+    {
+        color: #ddd;
+        float: right;
+        cursor: pointer;
+    }
+
+    .rating > input:checked ~ label,
+    .rating:not(:checked) > label:hover, 
+    .rating:not(:checked) > label:hover ~ label
+    {
+        color: #2ce679;
+    }
+
+    .rating > input:checked + label:hover,
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label,
+    .rating > input:checked ~ label:hover ~ label
+    {
+        color: #2ddc76;
+    }
+    </style>
+    <body>
+      <div class="designNav fixed-top" id="designHeader">
+        <nav>
+          <div class="logo">MyCourt</div>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li>
+              <a href="#">Find Sports Centre</a>
+              <ul>
+                <li><a href="/findSportCentreLocation">Location</a></li>
+                <li><a href="/findSportCentreCourt">Court</a></li>
+              </ul>
+            </li>
+            <li><a href="/bookingHistory">Booking History</a></li>
+            <li><a href="/userInfo">User Information</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+        </nav>
+      </div>
+    <script>
+      $('.icon').click(function()
+      {
+        $('span').toggleClass("cancel");
+      });
+    </script>
+        <br><br><br><br><br>
+        <div class="container">
+          <!-- Error message -->
+            {% for message in get_flashed_messages() %}
+              {% if message == "Your given rating value is 0. Please try again!"  %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>        
+              {% endif %}
+            {% endfor %}
+            <h1>Sports Centre Details</h1>
+            <br>
+                <div class="mt-5">
+                    <form action="/sportsCourt" method="POST">
+                        <!-- Sports centre details -->
+                        {% for nama, address, lokasi, gelanggang in res["NAME"] | zip(res["ADDRESS"], res["LOCATION"], res["COURT"]) %}
+                          {% if gelanggang.startswith('B')  %}
+                            <img src="{{ url_for('static', filename='images/badminton6.jpg')}}" class="card-img-top" alt="Card image cap" style="height: 280px; width: 400px; float: left; margin-right: 100px; border-radius: 10px">
+                          {% elif gelanggang.startswith('F')  %}
+                            <img src="{{ url_for('static', filename='images/futsal3.jpg')}}" class="card-img-top" alt="Card image cap" style="height: 280px; width: 400px; float: left; margin-right: 100px; border-radius: 10px">
+                          {% elif gelanggang.startswith('S')  %}
+                            <img src="{{ url_for('static', filename='images/squash2.png')}}" class="card-img-top" alt="Card image cap" style="height: 280px; width: 400px; float: left; margin-right: 100px; border-radius: 10px">
+                          {% elif gelanggang.startswith('T')  %}
+                            <img src="{{ url_for('static', filename='images/tennis4.png')}}" class="card-img-top" alt="Card image cap" style="height: 280px; width: 400px; float: left; margin-right: 100px; border-radius: 10px">
+                          {% elif gelanggang.startswith('V')  %}
+                            <img src="{{ url_for('static', filename='images/volleyball3.jpg')}}" class="card-img-top" alt="Card image cap" style="height: 280px; width: 400px; float: left; margin-right: 100px; border-radius: 10px">
+                          {% endif %}
+                          <h4 style="color: #191970;">{{ nama }}</h4><br>
+                          <table>
+                            <tr>
+                              <td style="width: 40px;"><i class="fa-sharp fa-solid fa-location-dot"></i><br><br></td>
+                              <td style="width: 400px;"><span class="margin-auto">{{ address }}</span><br><br></td>
+                            </tr>
+                            <tr>
+                              <td><i class="fa-solid fa-location-arrow"></i><br><br></td>
+                              <td><span>{{ lokasi }}</span><br><br></td>
+                            </tr>
+                            <tr>
+                              <td><i class="fa-regular fa-futbol"></i></td>
+                              <td><span>{{ gelanggang }}</span></td>
+                            </tr>
+                                <input type="hidden" id="sportsCentre" name="sportsCentre" value="{{ nama }}">
+                                <input type="hidden" id="court" name="court" value="{{ gelanggang }}">
+                                <input type="hidden" id="location" name="location" value="{{ lokasi }}">
+                        {% endfor %}
+                            <td></td>
+                            <td>
+                                <br>
+                              <input id="submit" type="submit" class="btn btn-primary" value="Book Court" style="margin-top: 10px;">
+                            </td>
+                          </table>       
+                    </form>
+                </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br>
+    <div id="designFooter"> 
+        <div id="printPageButton">
+            <div class="card sticky-bottom" style="border-radius: 0; height: 290px;">
+                <div class="row mb-3 ">                  
+                    <div class="col-md-4 col-sm-11 col-xs-11">
+                        <div class="footer-text pull-left">
+                             <div class="d-flex">
+                                 <h1 style="color: cyan;">MyCourt</h1>
+                             </div>
+                             <p class="card-text">Sports centre online booking system in Malaysia that helps to give recommendations based on user profile and has user-friendly court booking interface.</p>
+                             <div class="social mt-2 mb-3">
+                                <i class="fa fa-facebook-official fa-lg" ></i>
+                                <i class="fa fa-instagram fa-lg"></i>
+                                <i class="fa fa-twitter fa-lg"></i>
+                                <i class="fa fa-linkedin-square fa-lg"></i>
+    
+                             </div>                        
+                         </div>
+                    </div>                                
+                    <div class="col-md-2 col-sm-1 col-xs-1 mb-2"></div>                   
+                    <div class="col-md-2 col-sm-4 col-xs-4 mt-4">                 
+                        <h5 class="heading">Features</h5>
+                        <ul >
+                            <li>Recommendations </li>
+                            <li>Court Booking</li>
+                            <li>Online Payment</li>
+                        </ul>                 
+                    </div>        
+                    <div class="col-md-2 col-sm-4 col-xs-4 mt-4">         
+                        <h5 class="heading">Help Centre</h5>
+                        <ul class="card-text">
+                            <li>FAQ</li>
+                            <li>Terms of Use</li>
+                            <li>Privacy Policy</li>
+                        </ul>             
+                    </div>              
+                     <div class="col-md-2 col-sm-4 col-xs-4 mt-4">
+                        <h5 class="heading">About Us</h5>
+                        <ul class="card-text">
+                            <li>About Us</li>
+                            <li>Blog</li>
+                            <li>Contact</li>
+                        </ul>
+                     </div>
+                </div>       
+                <div class="divider mb-4" >   
+                </div>    
+                <div class="row" style="font-size:10px;">            
+                <div class="col-md-6 col-sm-6 col-xs-6">                
+                    <div class="pull-left">                     
+                        <p><i class="fa fa-copyright"></i> 2023 MyCourt. All Rights Reserved.</p>                       
+                    </div>                  
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">                
+                    <div class="pull-right mr-4 d-flex policy">                       
+                       <div></div>
+                       <div></div>
+                       <div></div>                     
+                    </div>         
+                </div>   
+             </div>
+            </div>
+        </div>                     
+    </div>
+    </body>
+</html>

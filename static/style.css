@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+.designNav
+{
+  font-family: 'Poppins', sans-serif;
+}
+#designHeader nav
+{
+  background: #1b1b1b;
+  height: 70px;
+}
+#designHeader nav:after
+{
+  content: '';
+  clear: both;
+  display: table;
+}
+#designHeader nav .logo
+{
+  float: left;
+  color: white;
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 70px;
+  padding-left: 110px;
+}
+#designHeader nav ul
+{
+  float: right;
+  margin-right: 40px;
+  list-style: none;
+  position: relative;
+}
+#designHeader nav ul li
+{
+  float: left;
+  background: #1b1b1b;
+  margin: 0 5px;
+}
+#designHeader nav ul li a
+{
+  color: white;
+  line-height: 70px;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 15px;
+}
+#designHeader nav ul li a:hover
+{
+  color: cyan;
+  border-radius: 5px;
+  box-shadow:  0 0 5px #33ffff,
+               0 0 10px #66ffff;
+}
+#designHeader nav ul ul li a:hover
+{
+  box-shadow: none;
+}
+#designHeader nav ul ul
+{
+  position: absolute;
+  top: 90px;
+  border-top: 3px solid cyan;
+  width: 195px;
+  opacity: 0;
+  visibility: hidden;
+  transition: top .3s;
+}
+#designHeader nav ul ul ul
+{
+  border-top: none;
+}
+#designHeader nav ul li:hover > ul
+{
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
+}
+#designHeader nav ul ul li
+{
+  position: relative;
+  margin-inline : -32px;
+  width: 195px;
+  float: none;
+  display: list-item;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+#designHeader nav ul ul li a
+{
+  line-height: 50px;
+}
+#designHeader nav ul ul ul li
+{
+  position: relative;
+  top: -60px;
+  left: 100px;
+}
+
+
+
+
